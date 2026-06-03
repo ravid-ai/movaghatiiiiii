@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="html-root">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,13 +7,10 @@
   <meta name="description" content="Browse CharacterVerse default characters and add them to your chat." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="gallery.css" />
 </head>
-
 <body>
   <div class="gallery-page">
     <header class="gallery-topbar">
@@ -28,8 +24,7 @@
         <div class="gt-logo">
           <svg viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="10" stroke="url(#ggrad)" stroke-width="1.5" />
-            <path d="M7 12c0-2.76 2.24-5 5-5s5 2.24 5 5-2.24 5-5 5" stroke="url(#ggrad)" stroke-width="1.5"
-              stroke-linecap="round" />
+            <path d="M7 12c0-2.76 2.24-5 5-5s5 2.24 5 5-2.24 5-5 5" stroke="url(#ggrad)" stroke-width="1.5" stroke-linecap="round" />
             <circle cx="12" cy="12" r="2.5" fill="url(#ggrad)" />
             <defs>
               <linearGradient id="ggrad" x1="0" y1="0" x2="24" y2="24">
@@ -56,14 +51,14 @@
         <p class="gallery-p">Cards load in random order, without repeats. Scroll to load more.</p>
       </div>
 
+      <!-- Filters (search + categories) -->
       <section class="gallery-filters" aria-label="Gallery filters">
         <div class="gsearch">
           <svg class="gsearch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>
-          <input id="gallery-search" type="text" placeholder="Search characters…" autocomplete="off"
-            spellcheck="false" />
+          <input id="gallery-search" type="text" placeholder="Search characters…" autocomplete="off" spellcheck="false" />
           <button class="gclear" id="gallery-clear" title="Clear">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M18 6L6 18M6 6l12 12" />
@@ -93,42 +88,33 @@
       </div>
     </main>
 
+    <!-- Details modal -->
     <div class="gmodal-backdrop hidden" id="gmodal">
       <div class="gmodal" role="dialog" aria-modal="true" aria-labelledby="gmodal-title">
         <button class="gmodal-close" id="gmodal-close" aria-label="Close">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round">
-            <path d="M6 6l12 12M18 6L6 18" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
 
-        <div class="gmodal-hero">
-          <div id="gmodal-avatar" class="gmodal-avatar"></div>
-          <div class="gmodal-hero-gradient"></div>
-          <div class="gmodal-hero-info">
-            <h2 id="gmodal-title" class="gmodal-name">—</h2>
-            <div id="gmodal-sub" class="gmodal-sub">—</div>
+        <div class="gmodal-header">
+          <div class="gmodal-avatar" id="gmodal-avatar"></div>
+          <div class="gmodal-headtext">
+            <div class="gmodal-name" id="gmodal-title">—</div>
+            <div class="gmodal-sub" id="gmodal-sub">—</div>
           </div>
         </div>
 
         <div class="gmodal-body">
-          <div id="gmodal-tags" class="gmodal-tags"></div>
-
-          <section class="gmodal-section" data-accent="cyan">
-            <header class="gmodal-section-head">
-              <span class="gmodal-section-icon">📖</span>
-              <h4 class="gmodal-section-title">Short Description</h4>
-            </header>
-            <div id="gmodal-desc" class="gmodal-text">—</div>
-          </section>
-
-          <section class="gmodal-section" data-accent="violet">
-            <header class="gmodal-section-head">
-              <span class="gmodal-section-icon">💬</span>
-              <h4 class="gmodal-section-title">Opening Message</h4>
-            </header>
-            <div id="gmodal-open" class="gmodal-open">—</div>
-          </section>
+          <div class="gmodal-section">
+            <div class="gmodal-label">Short Description</div>
+            <div class="gmodal-text" id="gmodal-desc">—</div>
+          </div>
+          <div class="gmodal-section">
+            <div class="gmodal-label">Opening Message</div>
+            <div class="gmodal-open" id="gmodal-open">—</div>
+          </div>
+          <div class="gmodal-tags" id="gmodal-tags"></div>
         </div>
 
         <div class="gmodal-actions">
@@ -154,5 +140,4 @@
 
   <script src="gallery.js"></script>
 </body>
-
 </html>

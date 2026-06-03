@@ -1,157 +1,423 @@
-/* =========================================================
-   CharacterVerse — Gallery (Premium Glassmorphism Edition)
-   ========================================================= */
+/* Gallery overrides and layout (uses variables + components from style.css) */
 
-:root {
-  --bg-0: #0a0a14;
-  --bg-1: #11111f;
-  --bg-2: #181830;
-  --surface: rgba(255, 255, 255, 0.04);
-  --surface-strong: rgba(255, 255, 255, 0.07);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --text: #ecedf5;
-  --text-dim: #a3a6c2;
-  --text-mute: #6b6f8c;
-
-  --accent-cyan: #38bdf8;
-  --accent-violet: #a78bfa;
-  --accent-pink: #f472b6;
-  --accent-grad: linear-gradient(135deg, #38bdf8 0%, #a78bfa 50%, #f472b6 100%);
-
-  --radius-card: 18px;
-  --radius-modal: 22px;
-  --radius-pill: 999px;
-
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-hover: 0 18px 50px rgba(80, 70, 200, 0.35),
-    0 0 0 1px rgba(167, 139, 250, 0.35);
-  --shadow-modal: 0 30px 80px rgba(0, 0, 0, 0.6);
-
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+body {
+  overflow: auto;
 }
 
-/* =========================================================
-   GALLERY WRAPPER
-   ========================================================= */
-.gallery-wrapper {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 48px 24px 80px;
+.gallery-page {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(96, 165, 250, 0.04) 0%, transparent 45%);
 }
 
-.gallery-header {
+.gallery-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 10, 15, 0.55);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+}
+
+.gt-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  transition: var(--transition-bounce);
+}
+
+.gt-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.gt-btn:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  transform: translateY(-1px) scale(1.06);
+  border-color: var(--border-default);
+}
+
+.gt-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 40px;
 }
 
-.gallery-title {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin: 0 0 10px;
-  color: var(--text);
+.gt-logo {
+  width: 34px;
+  height: 34px;
 }
 
-.gallery-title span {
-  background: var(--accent-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.gt-logo svg {
+  width: 100%;
+  height: 100%;
 }
 
-.gallery-subtitle {
-  color: var(--text-dim);
-  font-size: 15px;
-  margin: 0;
-}
-
-/* =========================================================
-   GRID
-   ========================================================= */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 22px;
-}
-
-/* =========================================================
-   GCARD — Portrait card with large media
-   ========================================================= */
-.gcard {
-  position: relative;
+.gt-title {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.05) 0%,
-      rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  cursor: pointer;
-  isolation: isolate;
-  box-shadow: var(--shadow-card);
-  transition:
-    transform 0.4s var(--ease),
-    border-color 0.3s var(--ease),
-    box-shadow 0.4s var(--ease);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  line-height: 1.1;
 }
 
-/* MEDIA — large character image */
-.gcard-media {
+.gt-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gt-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.gt-right {
+  width: 110px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gt-pill {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.gallery-main {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+}
+
+.gallery-hero {
+  padding: 14px 6px 18px;
+  text-align: center;
+}
+
+/* ===== FILTERS ===== */
+.gallery-filters {
+  margin: 6px auto 6px;
+  display: grid;
+  gap: 10px;
+  position: sticky;
+  top: 74px;
+  z-index: 40;
+  padding: 10px 10px;
+  border-radius: var(--radius-xl);
+  background: rgba(10, 10, 15, 0.48);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+}
+
+.gsearch {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  /* بزرگ و مربعی — حدود ۳ برابر آواتار قبلی */
-  overflow: hidden;
-  background: #0e0e1c;
+  display: flex;
+  align-items: center;
 }
 
+.gsearch-icon {
+  position: absolute;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+}
+
+#gallery-search {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 12px 42px 12px 42px;
+  color: var(--text-primary);
+  transition: var(--transition);
+  box-shadow: var(--glass-edge);
+}
+
+#gallery-search:focus {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2), var(--glass-edge);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.gclear {
+  position: absolute;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  background: var(--bg-glass);
+  border: 1px solid transparent;
+  transition: var(--transition-bounce);
+}
+
+.gclear svg {
+  width: 16px;
+  height: 16px;
+}
+
+.gclear:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  transform: scale(1.08) rotate(90deg);
+}
+
+.gchips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.gchips::-webkit-scrollbar {
+  height: 0;
+}
+
+.gchip {
+  flex: 0 0 auto;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.gchip:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+.gchip.active {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: rgba(139, 92, 246, 0.55);
+  color: var(--accent-light);
+}
+
+.gmeta {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.gmeta-pill {
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.gallery-h1 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.gallery-p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 14px;
+}
+
+@media (max-width: 980px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gt-right {
+    width: 88px;
+  }
+
+  .gt-brand {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gt-brand {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* =========================================================
+   ===== GALLERY CARD — PORTRAIT / GLASSMORPHISM UPGRADE =====
+   ========================================================= */
+.gcard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-edge), var(--shadow-md);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  padding: 0;
+  /* پدینگ رو حذف کردیم تا عکس بچسبه به لبه‌ها */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* درخشش (Glow) شیشه‌ای روی هاور */
+.gcard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.22), transparent 60%);
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gcard:hover {
+  transform: translateY(-6px);
+  background: var(--bg-card-hover);
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow:
+    var(--glass-edge),
+    0 18px 44px rgba(0, 0, 0, 0.45),
+    0 0 32px rgba(139, 92, 246, 0.28);
+  /* << GLOW شیشه‌ای */
+}
+
+.gcard:hover::after {
+  opacity: 1;
+}
+
+/* --- بخش بالایی کارت = حالا عمودی --- */
+.gcard-top {
+  display: flex;
+  flex-direction: column;
+  /* << افقی → عمودی */
+  gap: 0;
+  align-items: stretch;
+}
+
+/* --- آواتار = حالا تصویر بزرگ تمام‌عرض (بنر) --- */
 .gcard-avatar {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  /* << نسبت تصویر کارت. می‌تونی 1/1 یا 4/3 بذاری */
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(139, 92, 246, 0.18), transparent 70%),
+    var(--bg-glass);
+  border: none;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: none;
+  position: relative;
+}
+
+.gcard-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.6s var(--ease), filter 0.4s var(--ease);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.gcard-media-overlay {
+.gcard-avatar span {
+  font-size: 64px;
+}
+
+/* اموجی/حروف اول بزرگ‌تر */
+
+/* گرادیان محو پایین عکس تا متن خوانا بمونه */
+.gcard-avatar::after {
+  content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg,
-      rgba(10, 10, 20, 0) 55%,
-      rgba(10, 10, 20, 0.55) 100%);
+  background: linear-gradient(to top, var(--bg-card) 2%, transparent 38%);
   pointer-events: none;
 }
 
-/* BODY */
-.gcard-body {
-  padding: 14px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
+.gcard:hover .gcard-avatar img {
+  transform: scale(1.07);
+}
+
+/* --- متن نام/عنوان: حالا زیر عکس، با کمی هم‌پوشانی زیبا --- */
+.gcard-top>div:last-child {
+  padding: 0 14px;
+  margin-top: -28px;
+  /* کشیدن نام روی پایینِ عکس */
+  position: relative;
+  z-index: 3;
 }
 
 .gcard-name {
-  font-size: 16px;
-  font-weight: 700;
-  margin: 0;
-  color: var(--text);
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1.25;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
 }
 
+.gcard-title {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* --- توضیحات و تگ‌ها: داخل پدینگ --- */
 .gcard-desc {
   font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-dim);
-  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding: 10px 14px 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -162,366 +428,343 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 4px;
+  padding: 10px 14px 0;
 }
 
-.gcard-tag {
+.gtag {
   font-size: 11px;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: var(--radius-pill);
-  background: rgba(167, 139, 250, 0.1);
-  color: #c7b8ff;
-  border: 1px solid rgba(167, 139, 250, 0.22);
-  letter-spacing: 0.02em;
+  padding: 4px 9px;
+  background: rgba(139, 92, 246, 0.10);
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  border-radius: 999px;
+  color: var(--accent-light);
 }
 
-/* GLOW layer (the hover shine) */
-.gcard-glow {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  background:
-    radial-gradient(60% 80% at 50% 0%, rgba(167, 139, 250, 0.45), transparent 70%),
-    radial-gradient(50% 60% at 100% 100%, rgba(56, 189, 248, 0.35), transparent 70%);
-  transition: opacity 0.45s var(--ease);
-  z-index: -1;
-  filter: blur(14px);
+.gcard-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 14px;
+  margin-top: auto;
+  /* دکمه‌ها همیشه ته کارت */
 }
 
-/* HOVER */
-.gcard:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-hover);
-}
-
-.gcard:hover .gcard-avatar {
-  transform: scale(1.06);
-  filter: saturate(1.1) brightness(1.05);
-}
-
-.gcard:hover .gcard-glow {
-  opacity: 1;
+.gcard-click {
+  cursor: pointer;
 }
 
 /* =========================================================
-   MODAL
+   ===== MODAL — PREMIUM GLASSMORPHISM UPGRADE =====
    ========================================================= */
-.gmodal {
+.gmodal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-.gmodal.is-open,
-.gmodal[aria-hidden="false"] {
-  display: flex;
-  animation: gmodal-fade 0.25s var(--ease);
-}
-
-.gmodal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(5, 5, 12, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.gmodal-dialog {
-  position: relative;
-  width: min(560px, 100%);
-  max-height: 90vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--radius-modal);
-  background: linear-gradient(160deg,
-      rgba(28, 28, 50, 0.92) 0%,
-      rgba(18, 18, 34, 0.92) 100%);
-  border: 1px solid var(--border-strong);
-  box-shadow: var(--shadow-modal),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.66);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  animation: gmodal-pop 0.35s var(--ease);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
 }
 
-/* Close button */
+.gmodal {
+  width: min(640px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 30%),
+    var(--bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  box-shadow:
+    var(--glass-edge),
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(139, 92, 246, 0.18);
+  overflow: hidden;
+  position: relative;
+  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .gmodal-close {
   position: absolute;
   top: 14px;
   right: 14px;
-  z-index: 3;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(15, 15, 25, 0.55);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #fff;
   display: grid;
   place-items: center;
-  cursor: pointer;
+  transition: var(--transition-bounce);
+  z-index: 10;
   backdrop-filter: blur(8px);
-  transition: background 0.2s, transform 0.2s;
+}
+
+.gmodal-close svg {
+  width: 18px;
+  height: 18px;
 }
 
 .gmodal-close:hover {
-  background: rgba(244, 114, 182, 0.25);
-  transform: rotate(90deg);
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  transform: scale(1.08) rotate(90deg);
 }
 
-/* Hero / banner */
-.gmodal-hero {
+/* --- هدر مودال = بنر بزرگ با آواتار درشت --- */
+.gmodal-header {
+  display: flex;
+  flex-direction: column;
+  /* << عمودی، بنری */
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 32px 24px 22px;
+  border-bottom: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at 50% -10%, rgba(139, 92, 246, 0.28), transparent 60%),
+    radial-gradient(circle at 80% 30%, rgba(96, 165, 250, 0.14), transparent 50%);
   position: relative;
-  width: 100%;
-  height: 240px;
-  overflow: hidden;
-  flex-shrink: 0;
 }
 
 .gmodal-avatar {
+  width: 116px;
+  /* << آواتار بسیار بزرگ‌تر */
+  height: 116px;
+  border-radius: 28px;
+  background: var(--bg-glass);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 6px rgba(139, 92, 246, 0.12),
+    0 12px 36px rgba(139, 92, 246, 0.35);
+  flex-shrink: 0;
+}
+
+.gmodal-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transform: scale(1.02);
 }
 
-.gmodal-hero-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-      rgba(10, 10, 20, 0) 30%,
-      rgba(18, 18, 34, 0.85) 85%,
-      rgba(18, 18, 34, 1) 100%);
+.gmodal-avatar span {
+  font-size: 50px;
 }
 
-.gmodal-hero-info {
-  position: absolute;
-  left: 22px;
-  right: 22px;
-  bottom: 14px;
+.gmodal-headtext {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: center;
 }
 
 .gmodal-name {
-  font-size: 26px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gmodal-sub {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.gmodal-body {
+  padding: 20px 22px 12px;
+  display: grid;
+  gap: 14px;
+}
+
+/* --- پنل‌های دیتای شیشه‌ای با خط رنگی سمت چپ --- */
+.gmodal-section {
+  background:
+    linear-gradient(120deg, rgba(139, 92, 246, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid rgba(139, 92, 246, 0.7);
+  /* << Accent border */
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+.gmodal-section:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  border-left-color: var(--accent-light);
+  background: linear-gradient(120deg, rgba(139, 92, 246, 0.10), rgba(255, 255, 255, 0.03));
+}
+
+.gmodal-label {
+  font-size: 10.5px;
   font-weight: 800;
-  margin: 0;
-  color: #fff;
-  letter-spacing: -0.02em;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.gmodal-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  box-shadow: 0 0 8px var(--accent-light);
+}
+
+.gmodal-text {
+  margin-top: 9px;
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.gmodal-open {
+  margin-top: 9px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  font-style: italic;
 }
 
 .gmodal-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-}
-
-.gmodal-tags .gcard-tag {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: #fff;
-  backdrop-filter: blur(8px);
-}
-
-/* Body / scroll area */
-.gmodal-body {
-  padding: 22px 24px 24px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.gmodal-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-.gmodal-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-}
-
-/* Glass data panel */
-.gmodal-section {
-  position: relative;
-  padding: 14px 16px 14px 18px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(8px);
-  overflow: hidden;
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
-}
-
-.gmodal-section::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 0;
-  width: 3px;
-  border-radius: 0 4px 4px 0;
-  background: var(--accent-violet);
-  opacity: 0.85;
-}
-
-.gmodal-section[data-accent="cyan"]::before {
-  background: var(--accent-cyan);
-}
-
-.gmodal-section[data-accent="violet"]::before {
-  background: var(--accent-violet);
-}
-
-.gmodal-section[data-accent="pink"]::before {
-  background: var(--accent-pink);
-}
-
-.gmodal-section:hover {
-  background: rgba(255, 255, 255, 0.055);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.gmodal-section-head {
-  display: flex;
-  align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
+  padding: 2px 2px 4px;
 }
 
-.gmodal-section-icon {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.gmodal-section-title {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-mute);
-  margin: 0;
-}
-
-.gmodal-section-text {
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--text);
-  margin: 0;
-  white-space: pre-wrap;
-}
-
-/* Actions */
 .gmodal-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 4px;
+  padding: 16px 22px 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.gmodal-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 20px;
-  border-radius: 12px;
-  font-size: 14px;
+@media (max-width: 560px) {
+  .gallery-filters {
+    top: 74px;
+  }
+
+  .gmodal-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .gmodal-avatar {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+/* ===== BUTTONS ===== */
+.gbtn {
+  padding: 11px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  font-size: 13px;
   font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease), filter 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition-bounce);
 }
 
-.gmodal-btn-primary {
-  background: var(--accent-grad);
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(167, 139, 250, 0.4);
+.gbtn svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.95;
 }
 
-.gmodal-btn-primary:hover {
+.gbtn:hover {
   transform: translateY(-2px);
-  filter: brightness(1.08);
-  box-shadow: 0 12px 28px rgba(167, 139, 250, 0.55);
+  background: var(--bg-glass-hover);
+  border-color: var(--border-strong);
 }
 
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
-@keyframes gmodal-fade {
-  from {
-    opacity: 0;
-  }
+.gbtn.primary {
+  background: var(--grad-main);
+  border: none;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(139, 92, 246, 0.35);
+}
 
+.gbtn.primary:hover {
+  box-shadow: 0 14px 30px rgba(139, 92, 246, 0.5);
+}
+
+/* ===== SENTINEL / EMPTY ===== */
+.gallery-sentinel {
+  margin: 18px auto 0;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-secondary);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+}
+
+.sentinel-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.55);
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
   to {
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
 
-@keyframes gmodal-pop {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.sentinel-text {
+  font-size: 13px;
 }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-@media (max-width: 520px) {
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 14px;
-  }
-
-  .gcard-body {
-    padding: 12px 12px 14px;
-  }
-
-  .gcard-name {
-    font-size: 14px;
-  }
-
-  .gcard-desc {
-    font-size: 12px;
-  }
-
-  .gmodal-hero {
-    height: 200px;
-  }
-
-  .gmodal-name {
-    font-size: 22px;
-  }
-
-  .gmodal-body {
-    padding: 18px 18px 20px;
-  }
+.gallery-empty {
+  margin-top: 24px;
+  padding: 26px;
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.02);
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: reduce) {
+.gallery-empty-icon {
+  font-size: 34px;
+}
 
-  .gcard,
-  .gcard-avatar,
-  .gcard-glow,
-  .gmodal-btn,
-  .gmodal-close {
-    transition: none !important;
-    animation: none !important;
-  }
+.gallery-empty-title {
+  margin-top: 10px;
+  font-weight: 800;
+  font-family: var(--font-display);
+}
+
+.gallery-empty-sub {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
 }
