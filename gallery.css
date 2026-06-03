@@ -377,11 +377,8 @@ body {
 
 /* گرادیان محو پایین عکس تا متن خوانا بمونه */
 .gcard-avatar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--bg-card) 2%, transparent 38%);
-  pointer-events: none;
+  content: none;
+  /* این خط سایه سیاه رو کلا پاک میکنه */
 }
 
 .gcard:hover .gcard-avatar img {
@@ -390,9 +387,10 @@ body {
 
 /* --- متن نام/عنوان: حالا زیر عکس، با کمی هم‌پوشانی زیبا --- */
 .gcard-top>div:last-child {
-  padding: 0 14px;
-  margin-top: -28px;
-  /* کشیدن نام روی پایینِ عکس */
+  padding: 12px 14px 4px;
+  /* یه فاصله تمیز از بالا بهش میدیم */
+  margin-top: 0;
+  /* مارجین منفی رو حذف میکنیم که نره تو شکم عکس */
   position: relative;
   z-index: 3;
 }
