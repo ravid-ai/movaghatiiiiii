@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="html-root">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CharacterVerse — Character Gallery</title>
+  <meta name="description" content="Browse CharacterVerse default characters and add them to your chat." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="gallery.css" />
+</head>
+
+<body>
+  <div class="gallery-page">
+    <header class="gallery-topbar">
+      <button class="gt-btn" onclick="location.href='index.html'" title="Back to chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+
+      <div class="gt-brand">
+        <div class="gt-logo">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="url(#ggrad)" stroke-width="1.5" />
+            <path d="M7 12c0-2.76 2.24-5 5-5s5 2.24 5 5-2.24 5-5 5" stroke="url(#ggrad)" stroke-width="1.5"
+              stroke-linecap="round" />
+            <circle cx="12" cy="12" r="2.5" fill="url(#ggrad)" />
+            <defs>
+              <linearGradient id="ggrad" x1="0" y1="0" x2="24" y2="24">
+                <stop offset="0%" stop-color="#a78bfa" />
+                <stop offset="100%" stop-color="#60a5fa" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="gt-title">
+          <div class="gt-name">CharacterVerse</div>
+          <div class="gt-sub">Character Gallery</div>
+        </div>
+      </div>
+
+      <div class="gt-right">
+        <div class="gt-pill" id="gt-count">0 loaded</div>
+      </div>
+    </header>
+
+    <main class="gallery-main">
+      <div class="gallery-hero">
+        <h1 class="gallery-h1">Pick a character, copy the code, or jump straight into chat.</h1>
+        <p class="gallery-p">Cards load in random order, without repeats. Scroll to load more.</p>
+      </div>
+
+      <section class="gallery-filters" aria-label="Gallery filters">
+        <div class="gsearch">
+          <svg class="gsearch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input id="gallery-search" type="text" placeholder="Search characters…" autocomplete="off"
+            spellcheck="false" />
+          <button class="gclear" id="gallery-clear" title="Clear">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="gchips" id="gallery-chips" aria-label="Categories"></div>
+
+        <div class="gmeta">
+          <span class="gmeta-pill" id="gmeta-match">0 matched</span>
+          <span class="gmeta-pill" id="gmeta-loaded">0 loaded</span>
+        </div>
+      </section>
+
+      <section class="gallery-grid" id="gallery-grid"></section>
+
+      <div class="gallery-sentinel" id="gallery-sentinel">
+        <div class="sentinel-spinner"></div>
+        <div class="sentinel-text" id="sentinel-text">Loading…</div>
+      </div>
+
+      <div class="gallery-empty hidden" id="gallery-empty">
+        <div class="gallery-empty-icon">🪐</div>
+        <div class="gallery-empty-title">No characters found</div>
+        <div class="gallery-empty-sub">Check your gallery.json data.</div>
+      </div>
+    </main>
+
+    <div class="gmodal-backdrop hidden" id="gmodal">
+      <div class="gmodal" role="dialog" aria-modal="true" aria-labelledby="gmodal-title">
+        <button class="gmodal-close" id="gmodal-close" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+
+        <div class="gmodal-hero">
+          <div id="gmodal-avatar" class="gmodal-avatar"></div>
+          <div class="gmodal-hero-gradient"></div>
+          <div class="gmodal-hero-info">
+            <h2 id="gmodal-title" class="gmodal-name">—</h2>
+            <div id="gmodal-sub" class="gmodal-sub">—</div>
+          </div>
+        </div>
+
+        <div class="gmodal-body">
+          <div id="gmodal-tags" class="gmodal-tags"></div>
+
+          <section class="gmodal-section" data-accent="cyan">
+            <header class="gmodal-section-head">
+              <span class="gmodal-section-icon">📖</span>
+              <h4 class="gmodal-section-title">Short Description</h4>
+            </header>
+            <div id="gmodal-desc" class="gmodal-text">—</div>
+          </section>
+
+          <section class="gmodal-section" data-accent="violet">
+            <header class="gmodal-section-head">
+              <span class="gmodal-section-icon">💬</span>
+              <h4 class="gmodal-section-title">Opening Message</h4>
+            </header>
+            <div id="gmodal-open" class="gmodal-open">—</div>
+          </section>
+        </div>
+
+        <div class="gmodal-actions">
+          <button class="gbtn" id="gmodal-copy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy code
+          </button>
+          <button class="gbtn primary" id="gmodal-add">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+            Add to chat
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+  </div>
+
+  <script src="gallery.js"></script>
+</body>
+
+</html>
