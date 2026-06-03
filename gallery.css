@@ -472,8 +472,8 @@ body {
 
 .gmodal {
   width: min(640px, 100%);
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 85vh;
+  /* کمی کوتاه‌تر کردم که تو موبایل عالی جا بشه */
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 30%),
     var(--bg-elevated);
@@ -483,9 +483,13 @@ body {
     var(--glass-edge),
     0 30px 80px rgba(0, 0, 0, 0.6),
     0 0 60px rgba(139, 92, 246, 0.18);
-  overflow: hidden;
   position: relative;
   animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* 👇 جادوی چیدمان جدید اینجاست */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .gmodal-close {
@@ -521,7 +525,6 @@ body {
 .gmodal-header {
   display: flex;
   flex-direction: column;
-  /* << عمودی، بنری */
   align-items: center;
   text-align: center;
   gap: 14px;
@@ -531,6 +534,9 @@ body {
     radial-gradient(circle at 50% -10%, rgba(139, 92, 246, 0.28), transparent 60%),
     radial-gradient(circle at 80% 30%, rgba(96, 165, 250, 0.14), transparent 50%);
   position: relative;
+
+  /* 👇 هدر (عکس و اسم) ثابت می‌مونه */
+  flex-shrink: 0;
 }
 
 .gmodal-avatar {
@@ -586,6 +592,12 @@ body {
   padding: 20px 22px 12px;
   display: grid;
   gap: 14px;
+
+  /* 👇 فقط این بخش متنی اسکرول میشه! */
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* برای روون شدن اسکرول تو آیفون */
 }
 
 /* --- پنل‌های دیتای شیشه‌ای با خط رنگی سمت چپ --- */
@@ -655,6 +667,11 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+
+  /* 👇 دکمه‌ها همیشه کف مودال ثابت می‌مونن */
+  flex-shrink: 0;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
 }
 
 @media (max-width: 560px) {
